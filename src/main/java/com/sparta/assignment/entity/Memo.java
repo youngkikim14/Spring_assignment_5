@@ -31,7 +31,7 @@ public class Memo extends Timestamped {
 
     @OneToMany (mappedBy = "memo", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @OrderBy("modifiedAt DESC")
-    @JsonManagedReference
+//    @JsonManagedReference
     private List<Comment> comments = new ArrayList<>();
 
 

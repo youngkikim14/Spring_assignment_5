@@ -26,7 +26,7 @@ public class Comment extends Timestamped{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "memo_id")
-    @JsonBackReference
+//    @JsonBackReference
     private Memo memo;
 
     public Comment(CommentRequestDto commentRequestDto, Memo memo,User username) {
