@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Memo extends Timestamped {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(nullable = false)
@@ -31,9 +31,7 @@ public class Memo extends Timestamped {
 
     @OneToMany (mappedBy = "memo", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @OrderBy("modifiedAt DESC")
-//    @JsonManagedReference
     private List<Comment> comments = new ArrayList<>();
-
 
     public Memo(MemoRequestDto requestDto, String username) {
 

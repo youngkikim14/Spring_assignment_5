@@ -48,6 +48,7 @@ public class WebSecurityConfig {
 
         http.authorizeHttpRequests().requestMatchers("/api/user/**").permitAll()
                 .requestMatchers(HttpMethod.GET,"/api/memos/**").permitAll()
+                .requestMatchers("/api/like/**").permitAll()
                 .anyRequest().authenticated()
                 // JWT 인증/인가를 사용하기 위한 설정
                 .and().addFilterBefore(new JwtAuthFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);

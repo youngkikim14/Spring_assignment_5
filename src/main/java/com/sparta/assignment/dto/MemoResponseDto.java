@@ -2,6 +2,7 @@ package com.sparta.assignment.dto;
 
 import com.sparta.assignment.entity.Comment;
 import com.sparta.assignment.entity.Memo;
+import com.sparta.assignment.entity.MemoLike;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +18,7 @@ public class MemoResponseDto {
     private String username;
     private String contents;
     private List<CommentResponseDto> comments;
+//    private Integer memolikecount;
 
     public MemoResponseDto(Memo memo) {
         this.title = memo.getTitle();
@@ -27,5 +29,6 @@ public class MemoResponseDto {
             CommentResponseDto commentResponseDto = new CommentResponseDto(comment);
             this.comments.add(commentResponseDto);
         }
+//        this.memolikecount = (int) memo.getMemoLikes().stream().filter(MemoLike::getLike).count();
     }
 }

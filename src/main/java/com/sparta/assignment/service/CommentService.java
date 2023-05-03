@@ -22,23 +22,11 @@ public class CommentService {
 
     private final CommentRepository commentRepository;
     private final MemoRepository memoRepository;
-    private final UserRepository userRepository;
-    private final JwtUtil jwtUtil;
+//    private final UserRepository userRepository;
+//    private final JwtUtil jwtUtil;
 
     @Transactional
     public CommentResponseDto createComment(Long memoid, CommentRequestDto commentRequestDto, User user) {
-//        String token = jwtUtil.resolveToken(request); //토큰값
-//        Claims claims;
-//
-//        if (token != null) {
-//            if (jwtUtil.validateToken(token)) {
-//                claims = jwtUtil.getUserInfoFromToken(token); //토큰으로 사용자 정보 가져오기
-//            } else {
-//                throw new IllegalArgumentException("Token Erro"); // 에러표시
-//            }
-//            User user = userRepository.findByUsername(claims.getSubject()).orElseThrow( //토큰이 맞으면 토큰으로 db에서 사용자 정보 조회
-//                    () -> new IllegalArgumentException("없는 유저입니다")
-//            );
         Memo memo = memoRepository.findById(memoid).orElseThrow(
                 () -> new IllegalArgumentException("존재하지 않는 게시글입니다")
         );
@@ -51,18 +39,6 @@ public class CommentService {
 
     @Transactional
     public CommentResponseDto updateComment(Long id, CommentRequestDto commentRequestDto, Long memoid, User user) {
-//        String token = jwtUtil.resolveToken(request); //토큰값
-//        Claims claims;
-//
-//        if (token != null) {
-//            if (jwtUtil.validateToken(token)) {
-//                claims = jwtUtil.getUserInfoFromToken(token); //토큰으로 사용자 정보 가져오기
-//            } else {
-//                throw new IllegalArgumentException("Token Erro"); // 에러표시
-//            }
-//            User user = userRepository.findByUsername(claims.getSubject()).orElseThrow( //토큰이 맞으면 토큰으로 db에서 사용자 정보 조회
-//                    () -> new IllegalArgumentException("없는 유저입니다")
-//            );
         memoRepository.findById(memoid).orElseThrow(
                 () -> new IllegalArgumentException("존재하지 않는 게시글입니다")
         );
@@ -81,18 +57,6 @@ public class CommentService {
 
     @Transactional
     public String deleteComment(Long id, Long memoid, User user) {
-//        String token = jwtUtil.resolveToken(request); //토큰값
-//        Claims claims;
-//
-//        if (token != null) {
-//            if (jwtUtil.validateToken(token)) {
-//                claims = jwtUtil.getUserInfoFromToken(token); //토큰으로 사용자 정보 가져오기
-//            } else {
-//                throw new IllegalArgumentException("Token Erro"); // 에러표시
-//            }
-//            User user = userRepository.findByUsername(claims.getSubject()).orElseThrow( //토큰이 맞으면 토큰으로 db에서 사용자 정보 조회
-//                    () -> new IllegalArgumentException("없는 유저입니다")
-//            );
         memoRepository.findById(memoid).orElseThrow(
                 () -> new IllegalArgumentException("존재하지 않는 게시글입니다")
         );
