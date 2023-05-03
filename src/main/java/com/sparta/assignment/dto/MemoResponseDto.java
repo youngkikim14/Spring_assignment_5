@@ -18,7 +18,7 @@ public class MemoResponseDto {
     private String username;
     private String contents;
     private List<CommentResponseDto> comments;
-//    private Integer memolikecount;
+    private Integer memolikecount;
 
     public MemoResponseDto(Memo memo) {
         this.title = memo.getTitle();
@@ -29,6 +29,23 @@ public class MemoResponseDto {
             CommentResponseDto commentResponseDto = new CommentResponseDto(comment);
             this.comments.add(commentResponseDto);
         }
-//        this.memolikecount = (int) memo.getMemoLikes().stream().filter(MemoLike::getLike).count();
+        //this.memolikecount = (int) memo.getMemoLikes().stream().filter(n -> n.getMlike() == true).count();
+        //this.memolikecount = (int) memo.getMemoLikes().stream().filter(MemoLike::getMlike).count();
+
+
+            int count = 0;
+            List<MemoLike> memoLikes  = memo.getMemoLikes();
+            for (MemoLike n : memoLikes){
+            boolean trueOrNot = n.getMlike();
+
+            if (trueOrNot){
+                count++;
+            }
+        }
+        this.memolikecount = count;
+
+
+
+
     }
 }

@@ -1,7 +1,6 @@
 package com.sparta.assignment.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sparta.assignment.dto.MemoRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -29,12 +28,14 @@ public class Memo extends Timestamped {
     @Column(nullable = false)
     private String contents;
 
-    @OneToMany (mappedBy = "memo", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany (mappedBy = "memo", fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
     @OrderBy("modifiedAt DESC")
     private List<Comment> comments = new ArrayList<>();
 
-    public Memo(MemoRequestDto requestDto, String username) {
+    @OneToMany(mappedBy = "memo" ,fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
+    private List<MemoLike> memoLikes = new ArrayList<>();
 
+    public Memo(MemoRequestDto requestDto, String username) {
         this.title = requestDto.getTitle();
         this.contents = requestDto.getContents();
         this.username = username;

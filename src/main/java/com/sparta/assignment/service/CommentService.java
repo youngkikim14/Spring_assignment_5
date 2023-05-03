@@ -6,12 +6,8 @@ import com.sparta.assignment.entity.Comment;
 import com.sparta.assignment.entity.Memo;
 import com.sparta.assignment.entity.User;
 import com.sparta.assignment.entity.UserRoleEnum;
-import com.sparta.assignment.jwt.JwtUtil;
 import com.sparta.assignment.repository.CommentRepository;
 import com.sparta.assignment.repository.MemoRepository;
-import com.sparta.assignment.repository.UserRepository;
-import io.jsonwebtoken.Claims;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,8 +18,6 @@ public class CommentService {
 
     private final CommentRepository commentRepository;
     private final MemoRepository memoRepository;
-//    private final UserRepository userRepository;
-//    private final JwtUtil jwtUtil;
 
     @Transactional
     public CommentResponseDto createComment(Long memoid, CommentRequestDto commentRequestDto, User user) {
@@ -31,6 +25,7 @@ public class CommentService {
                 () -> new IllegalArgumentException("존재하지 않는 게시글입니다")
         );
         Comment comment = new Comment(commentRequestDto, memo, user);
+        
         commentRepository.saveAndFlush(comment);
 
         return new CommentResponseDto(comment);

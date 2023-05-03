@@ -23,9 +23,15 @@ public class MemoLike {
     @Column
     private Boolean mlike;
 
-    public MemoLike(Long userid, Long memoid, Boolean like) {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MEMO_ID")
+    private Memo memo;
+
+
+    public MemoLike(Long userid, Long memoid, Boolean like, Memo memo) {
         this.userid = userid;
         this.memoid = memoid;
         this.mlike = like;
+        this.memo = memo;
     }
 }

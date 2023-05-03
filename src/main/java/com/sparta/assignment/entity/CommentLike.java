@@ -26,10 +26,16 @@ public class CommentLike {
     @Column
     private Boolean clike;
 
-    public CommentLike(Long userid, Long memoid, Long commentid, Boolean like) {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "COMMENT_ID")
+    private Comment comment;
+
+
+    public CommentLike(Long userid, Long memoid, Long commentid, Boolean like, Comment comment) {
         this.userid = userid;
         this.memoid = memoid;
         this.commentid = commentid;
         this.clike = like;
+        this.comment = comment;
     }
 }
